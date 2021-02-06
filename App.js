@@ -1,12 +1,13 @@
 import React,{ Component } from 'react';
 import img from './assets/splash.png'
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      text:"kabundege"
+      text:"kabundege",
+      holder:""
     }
   }
   render(){
@@ -14,8 +15,9 @@ export default class App extends Component{
     return (
       <View style={styles.container}>
         <Text style={styles.text}>My Name is {text}</Text>
+        <TextInput style={styles.input} placeholder=" New Name ...." onChangeText={(value)=>this.setState({ holder: value })}/>
         <View style={styles.button}>
-            <Button title="Update Name" onPress={()=>this.setState({ text: "also kwizera" })}/>
+            <Button title="Update Name" onPress={()=>this.setState({ text: this.state.holder })}/>
         </View>
       </View>
     );
@@ -35,5 +37,13 @@ const styles = StyleSheet.create({
   },
   button:{
     marginTop:20,
+  },
+  input:{
+    borderWidth:1,
+    borderColor:"grey",
+    borderRadius:10,
+    marginTop:20,
+    padding:10,
+    paddingVertical:5
   }
 });
